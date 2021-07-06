@@ -16,11 +16,16 @@ from sendgrid.helpers.mail import Mail
 from twilio.rest import Client as TwilioClient
 from sendgrid import SendGridAPIClient
 
+f = open("api.js", "r")
+tokens = f.readlines()
+
+fritz_token = tokens[0].strip()
+swilio_token = tokens[1].strip()
 
 def send_email():
     startd = datetime.datetime.combine(datetime.date.today() - datetime.timedelta(days=1), datetime.datetime.min.time())
     startd
-    token = "2811dc0e-6c4b-462b-ad5a-04add44fc587"
+    token = fritz_token
     baselink = "https://fritz.science/source/"
 
     def api(method, endpoint, data=None, headers = {'Authorization': f'token {token}'}):
@@ -217,7 +222,7 @@ def send_email():
     # In[77]:
 
 
-    sg = SendGridAPIClient("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")
+    sg = SendGridAPIClient(swilio_token)
     response = sg.send(message)
 
 
