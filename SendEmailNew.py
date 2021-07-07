@@ -154,7 +154,7 @@ def send_email():
     </style>'''
     output += "There have been {} new sources and {} new saved sources, from {} to {}. <br>".format(new_sources, new_saved, startd.date(), datetime.datetime.today().date()) + html_content
 
-    file = open("EmailListDeep.txt", "r")
+    file = open("EmailList.txt", "r")
     emails = []
     lines = file.readlines()
     for i in lines: emails.append(i.strip())
