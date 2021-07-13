@@ -162,7 +162,7 @@ def send_email():
     message = Mail(
                     from_email="mrchu@caltech.edu",
                     to_emails= emails,
-                    subject="New Saved Sources Email for {}".format(datetime.datetime.today().date()),
+                    subject="[RCF Deep] New Saved Sources Email for {}".format(datetime.datetime.today().date()),
                     html_content=output,
                 )
 
