@@ -21,7 +21,7 @@ swilio_token = tokens[1].strip()
 def send_email():
     # Get correct time-frame
     startd = datetime.datetime.combine(datetime.date.today() - datetime.timedelta(days=1), datetime.datetime.min.time())
-    endd = datetime.datetime.combine(datetime.date.today(), datetime.datetime.min.time())
+    #endd = datetime.datetime.combine(datetime.date.today(), datetime.datetime.min.time())
     token = fritz_token
     baselink = "https://fritz.science/source/"
 
