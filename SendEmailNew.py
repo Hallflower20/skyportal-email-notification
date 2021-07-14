@@ -35,7 +35,7 @@ def send_email():
                 'includePhotometry': 'false',
                 'numPerPage': 25,
                 'startDate': datetime.datetime.strftime(startd, '%Y-%m-%dT%H:%M:%S.%f'),
-                'endDate': datetime.datetime.strftime(endd, '%Y-%m-%dT%H:%M:%S.%f'),
+                #'endDate': datetime.datetime.strftime(endd, '%Y-%m-%dT%H:%M:%S.%f'),
                 'savedStatus': 'all',
                 'groupIDs': "41"
                 }
@@ -60,7 +60,7 @@ def send_email():
                 'includePhotometry': 'true',
                 'numPerPage': 99999,
                 'savedAfter': datetime.datetime.strftime(startd, '%Y-%m-%dT%H:%M:%S.%f'),
-                'savedBefore': datetime.datetime.strftime(endd, '%Y-%m-%dT%H:%M:%S.%f'),
+                #'savedBefore': datetime.datetime.strftime(endd, '%Y-%m-%dT%H:%M:%S.%f'),
                 'group_ids': "41"
                 }
     response_sources = api('GET', 'https://fritz.science/api/sources', data = data)
