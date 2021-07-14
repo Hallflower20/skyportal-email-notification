@@ -21,7 +21,7 @@ swilio_token = tokens[1].strip()
 def send_email():
     # Get correct time-frame
     startd = datetime.datetime.combine(datetime.date.today() - datetime.timedelta(days=1), datetime.datetime.min.time())
-    endd = datetime.datetime.combine(datetime.date.today(), datetime.datetime.min.time())
+    #endd = datetime.datetime.combine(datetime.date.today(), datetime.datetime.min.time())
     token = fritz_token
     baselink = "https://fritz.science/source/"
 
@@ -35,7 +35,7 @@ def send_email():
                 'includePhotometry': 'false',
                 'numPerPage': 25,
                 'startDate': datetime.datetime.strftime(startd, '%Y-%m-%dT%H:%M:%S.%f'),
-                'endDate': datetime.datetime.strftime(endd, '%Y-%m-%dT%H:%M:%S.%f'),
+                #'endDate': datetime.datetime.strftime(endd, '%Y-%m-%dT%H:%M:%S.%f'),
                 'savedStatus': 'all',
                 'groupIDs': "280"
                 }
@@ -60,7 +60,7 @@ def send_email():
                 'includePhotometry': 'true',
                 'numPerPage': 99999,
                 'savedAfter': datetime.datetime.strftime(startd, '%Y-%m-%dT%H:%M:%S.%f'),
-                'savedBefore': datetime.datetime.strftime(endd, '%Y-%m-%dT%H:%M:%S.%f'),
+                #'savedBefore': datetime.datetime.strftime(endd, '%Y-%m-%dT%H:%M:%S.%f'),
                 'group_ids': "280"
                 }
     response_sources = api('GET', 'https://fritz.science/api/sources', data = data)
