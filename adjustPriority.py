@@ -33,7 +33,7 @@ def adjust_priority():
       if fu_end >= datetime.datetime.utcnow().replace(tzinfo=datetime.timezone.utc) and f['status'] == 'submitted':
           if f['payload']['priority'] == 1:
 
-              alerts = api('GET', BASEURL+'api/alerts/'+f['obj_id']+'?includeAllFields=True')['data']
+              alerts = api('GET', 'https://fritz.science/api/alerts/'+f['obj_id']+'?includeAllFields=True')['data']
 
               if alerts[-1]['candidate']['field'] in dat:
                   #print(f['obj_id'] + ' in field ' + str(alerts[-1]['candidate']['field']) + ' with priority ' + str(f['payload']['priority']) + ' to be adjusted to priority 1.5')
