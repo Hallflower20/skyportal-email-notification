@@ -13,4 +13,4 @@ while True:
     except:
         time.sleep(360)
         SendEmailNew.send_email
-        adjstPriority.adjust_priority
+        adjustPriority.adjust_priority
