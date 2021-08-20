@@ -12,7 +12,7 @@ token = tokens[0].strip()
 
 # Performs query, returns Response
 def api(method, endpoint, data=None, headers = {'Authorization': f'token {token}'}):
-  response = requests.request(method, endpoint, params=data, headers=headers)
+  response = requests.request(method, endpoint, json=data, headers=headers)
   return response
 
 # Priority ajustment starts here
@@ -36,11 +36,17 @@ def adjust_priority():
               alerts = api('GET', 'https://fritz.science/api/alerts/'+f['obj_id']+'?includeAllFields=True').json()['data']
 
               if alerts[-1]['candidate']['field'] in dat:
-                  #print(f['obj_id'] + ' in field ' + str(alerts[-1]['candidate']['field']) + ' with priority ' + str(f['payload']['priority']) + ' to be adjusted to priority 1.5')
+                  print(f['obj_id'] + ' in field ' + str(alerts[-1]['candidate']['field']) + ' with priority ' + str(f['payload']['priority']) + ' to be adjusted to priority 1.5')
                   payload = f['payload']
                   payload['priority'] = 1.5
 
-                  data = {'allocation_id': 1, 'payload': payload, 'obj_id': 'ZTF21abmzpmc'}
+                  data = {"allocation_id": 1, "payload": payload, "obj_id": f['obj_id']}
 
-              #print(api('PUT', 'https://fritz.science/api/followup_request/'+str(f['id']), data=data))
-              api('PUT', 'https://fritz.science/api/followup_request/'+str(f['id']), data=data)
+                  print('https://fritz.science/api/followup_request/'+str(f['id']))
+
+                  resp = api('PUT', 'https://fritz.science/api/followup_request/'+str(f['id']), data=data)
+
+                  print(resp.json()['status'])
+
+                  if resp.json()['status'] != 'success':
+                    print(resp.json()['message'])
