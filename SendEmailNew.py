@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from sendgrid.helpers.mail import Mail
 from twilio.rest import Client as TwilioClient
 from sendgrid import SendGridAPIClient
+from pprint import pprint
 
 # Two lines with API keys, first line is Fritz key and second line is sendgrid key.
 # MUST BE UNIQUELY GENERATED
@@ -56,6 +57,8 @@ def send_email():
     response_followup = api('GET', 'https://fritz.science/api/followup_request')
     response_followup_json = response_followup.json()
 
+    #pprint(response_followup_json)
+
     data = {
                 'includePhotometry': 'true',
                 'numPerPage': 99999,
@@ -75,7 +78,7 @@ def send_email():
 
     obj_id = []
     for i in response_followup_json["data"]:
-        if(i["status"] != "deleted"):
+        if(i["status"] != "deleted" and i['allocation_id'] != 22):
             obj_id.append([i["obj_id"], int(i["payload"]["priority"])])
     obj_id = np.asarray(obj_id)
     new_saved = 0
@@ -160,7 +163,7 @@ def send_email():
     for i in lines: emails.append(i.strip())
 
     message = Mail(
-                    from_email="xhall@caltech.edu",
+                    from_email="mrchu39@berkeley.edu",
                     to_emails= emails,
                     subject="[RCF] New Saved Sources Email for {}".format(datetime.datetime.today().date()),
                     html_content=output,
