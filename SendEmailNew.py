@@ -163,7 +163,7 @@ def send_email():
     for i in lines: emails.append(i.strip())
 
     message = Mail(
-                    from_email="mrchu39@berkeley.edu",
+                    from_email="xhall@caltech.edu",
                     to_emails= emails,
                     subject="[RCF] New Saved Sources Email for {}".format(datetime.datetime.today().date()),
                     html_content=output,
